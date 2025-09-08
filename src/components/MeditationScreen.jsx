@@ -23,17 +23,21 @@ function MeditationScreen({ webcamEnabled, selectedSound, youtubeUrl, timer, isP
   }
 
   return (
-    <div className="relative min-h-screen bg-black text-white flex flex-col items-center justify-center">
+    <div className="relative min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 text-white flex flex-col items-center justify-center p-4">
       {webcamEnabled && (
         <video
           ref={videoRef}
           autoPlay
-          className="absolute top-4 right-4 w-48 h-36 border rounded"
+          className="w-96 h-72 rounded-lg border-4 border-white shadow-lg mb-6"
         />
       )}
-      
-      <div className="text-6xl font-mono mb-8">{formatTime(timer)}</div>
-      
+
+      {(timer > 0 && !isPaused) ? (
+        <div className="text-6xl font-mono mb-8">{formatTime(timer)}</div>
+      ) : (
+        <div className="text-3xl font-mono mb-8 opacity-60">Timer paused or not running</div>
+      )}
+
       {selectedSound === 'YouTube Video' && youtubeUrl && (
         <iframe
           width="560"
@@ -43,16 +47,16 @@ function MeditationScreen({ webcamEnabled, selectedSound, youtubeUrl, timer, isP
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          className="mb-8"
+          className="mb-8 rounded-lg shadow-lg"
         ></iframe>
       )}
-      
+
       {(selectedSound === 'Healing Music' || selectedSound === 'Binaural Beats') && (
         <audio ref={audioRef} autoPlay loop>
           <source src={`/sounds/${selectedSound.toLowerCase().replace(' ', '-')}.mp3`} type="audio/mpeg" />
         </audio>
       )}
-      
+
       <div className="flex space-x-4">
         <button
           onClick={() => setIsPaused(!isPaused)}
