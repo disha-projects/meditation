@@ -1,6 +1,13 @@
-# Meditation UI Improvement Tasks
+# Fix Netlify MIME Type Error
 
-- [x] Change background from solid black to a soothing gradient
-- [x] Make webcam video larger and center it on the screen
-- [x] Adjust timer display to be less prominent when timer is 0 or paused
-- [x] Add overall styling improvements for better visual balance
+## Completed
+- [x] Updated vite.config.js to set base: './' for relative paths
+
+## Next Steps
+- [ ] Build the project: Run `npm run build` to generate production files
+- [ ] Deploy to Netlify: Upload the `dist` folder to Netlify
+- [ ] Test deployment: Verify the app loads without MIME type errors
+
+## Notes
+- The base: './' setting makes all asset paths relative, which should resolve the MIME type issue on Netlify
+- After building, the `dist` folder will contain the production-ready files
